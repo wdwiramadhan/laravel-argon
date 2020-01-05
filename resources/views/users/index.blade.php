@@ -1,5 +1,7 @@
 @extends('layouts.app', ['title' => __('User Management')])
-
+@push('css')
+    <link rel="stylesheet" href="{{ asset('argon') }}/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+@endpush
 @section('content')
 
 <div class="container-fluid mt-5">
@@ -33,6 +35,7 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                         </table>
@@ -45,26 +48,40 @@
 </div>
 @endsection
 
-@section('js')
+@push('js')
 <script src="{{ asset('argon') }}/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
     <script>
         $(function() {
             $('#user-table').DataTable({
+                searching: true,
+                select: true,
                 processing: true,
                 serverSide: true,
+                language: {
+                    oPaginate: {
+                        sNext: '<i class="fa fa-forward"></i>',
+                        sPrevious: '<i class="fa fa-backward"></i>',
+                        // sFirst: '<i class="fa fa-step-backward"></i>',
+                        // sLast: '<i class="fa fa-step-forward"></i>'
+                    }
+                }  ,
                 ajax: '{!! route('user.dataUser') !!}',
                 columns: [
-                    { data: 'name', name: 'name' },
-                    { data: 'email', name: 'email' },
+                    { name: 'name', data: 'name', },
+                    { name: 'email', data: 'email'},
+                    { name: 'actions', 
+                        data: 'id',
+                        render: function(data) { 
+                            const link = "{{route('user.index')}}"+"/"+data
+                            return `
+                                <a class="btn btn-primary btn-sm btn-xs" stlye="margin: 0 3px" href="${link}">Edit</a>
+                                <form role="form" action="${link}" style="margin: 0 3px;display:inline" method="POST">{{ csrf_field()}}{{method_field('delete ')}}<button class="btn btn-sm btn-danger btn-xs">Delete</button></form>
+                            `
+                        }
+                    },
                 ]
             });
         });
     </script>
-@endsection
+@endpush

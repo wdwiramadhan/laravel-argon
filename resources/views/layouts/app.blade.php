@@ -17,9 +17,7 @@
         <!-- Page plugins -->
         <!-- Argon CSS -->
         <link rel="stylesheet" href="{{ asset('argon') }}/css/argon.css?v=1.1.0" type="text/css">
-        <link rel="stylesheet" href="{{ asset('argon') }}/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-        <link rel="stylesheet" href="{{ asset('argon') }}/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
-        <link rel="stylesheet" href="{{ asset('argon') }}/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css">
+        @stack('css')
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -45,11 +43,9 @@
         <script src="{{ asset('argon') }}/vendor/js-cookie/js.cookie.js"></script>
         <script src="{{ asset('argon') }}/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-        
         @stack('js')
         
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
-        @yield('js')
     </body>
 </html>

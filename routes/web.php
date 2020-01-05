@@ -16,8 +16,9 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::group(['middleware' => 'checkrole'], function(){
-		Route::resource('user', 'UserController', ['except' => ['show']]);
+		Route::resource('user', 'UserController', ['except' => ['show','edit']]);
 		Route::get('user/dataUser', 'UserController@dataUser')->name('user.dataUser');
+		Route::get('user/{id}', 'UserController@edit')->name('user.edit');
 	});
 	Route::group(['prefix' => 'profile', 'as' => 'profile'], function(){
 		Route::get('/', 'ProfileController@edit')->name('.edit');
