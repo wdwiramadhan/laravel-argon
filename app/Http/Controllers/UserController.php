@@ -55,9 +55,12 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\View\View
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view('users.edit', compact('user'));
+        $user = User:: findOrFail($id);
+        return view('users.edit',[
+            'user' => $user
+        ]);
     }
 
     /**
