@@ -49,13 +49,11 @@
 @endsection
 
 @push('js')
-<script src="{{ asset('argon') }}/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(function() {
             $('#user-table').DataTable({
-                searching: true,
-                select: true,
                 processing: true,
                 serverSide: true,
                 language: {
@@ -70,12 +68,11 @@
                 columns: [
                     { name: 'name', data: 'name', },
                     { name: 'email', data: 'email'},
-                    { name: 'actions', 
-                        data: 'id',
+                    { data: 'id',
                         render: function(data) { 
                             const link = "{{route('user.index')}}"+"/"+data
                             return `
-                                <a class="btn btn-primary btn-sm btn-xs" stlye="margin: 0 3px" href="${link}">Edit</a>
+                                <a class="btn btn-primary btn-sm btn-xs" stlye="margin: 0 3px" href="${link}/edit">Edit</a>
                                 <form role="form" action="${link}" style="margin: 0 3px;display:inline" method="POST">{{ csrf_field()}}{{method_field('delete ')}}<button class="btn btn-sm btn-danger btn-xs">Delete</button></form>
                             `
                         }

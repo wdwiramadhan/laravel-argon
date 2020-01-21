@@ -20,10 +20,10 @@ class CreateMembersTable extends Migration
             $table->enum('gender', ['male', 'female']);
             $table->string('place_of_birth');
             $table->date('date_of_birth');
-            $table->string('address');
             $table->string('city');
             $table->string('districts');
             $table->string('village');
+            $table->string('address');
             $table->string('generation');
             $table->string('email')->unique();
             $table->string('phone_number');

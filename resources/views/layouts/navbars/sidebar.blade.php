@@ -51,7 +51,7 @@
               <div class="collapse" id="navbar-member">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="{{route('member')}}" class="nav-link">Member Mata Air</a>
+                    <a href="{{route('member.index')}}" class="nav-link">Member Mata Air</a>
                   </li>
                   <li class="nav-item">
                     <a href="{{route('user.index')}}" class="nav-link">Member Kartini</a>

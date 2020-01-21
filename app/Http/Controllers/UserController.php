@@ -22,7 +22,8 @@ class UserController extends Controller
 
     public function dataUser()
     {
-        return Datatables::of(User::query())->make(true);
+        $query = User::where('id','!=' ,auth()->user()->id);
+        return Datatables::of($query)->make(true);
     }
 
     /**
