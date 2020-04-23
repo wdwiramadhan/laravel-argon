@@ -6,7 +6,7 @@
     <div class="container mt--8 pb-5">
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-7">
-                <div class="card shadow border-0">
+                <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
                             <small>{{ __('Reset password') }}</small>
@@ -22,7 +22,7 @@
                             @csrf
 
                             <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }} mb-3">
-                                <div class="input-group">
+                                <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>

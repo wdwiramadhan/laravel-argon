@@ -24,11 +24,5 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::put('/', 'ProfileController@update')->name('.update');
 		Route::put('/password', 'ProfileController@password')->name('.password');
 	});
-	Route::group(['prefix' => 'member', 'as' => 'member'], function(){
-		Route::get('/', 'MemberController@index')->name('.index');
-		Route::get('/create', 'MemberController@create')->name('.create');
-		Route::post('/', 'MemberController@store')->name('.store');
-		Route::put('/{id}', 'MemberController@update')->name('.update');
-	});
 });
 
